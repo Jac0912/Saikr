@@ -55,7 +55,6 @@ class ImageData(torch.utils.data.Dataset):
         return len(self.features)
 
 
-
 def load_data(batch_size):
     train_iter = torch.utils.data.DataLoader(
         ImageData(train_features, train_labels),

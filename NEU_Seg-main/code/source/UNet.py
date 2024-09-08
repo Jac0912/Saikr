@@ -95,9 +95,11 @@ class UNet(nn.Module):
 
         return logits
 
+
 if __name__ == '__main__':
     model = UNet(3, 1)
     from torchsummary import summary
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model.to(device)
     summary(model, input_size=(3, 224, 224))
