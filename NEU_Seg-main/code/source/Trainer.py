@@ -6,7 +6,9 @@ import torch.nn as nn
 import streamlit as st
 import plotly.graph_objs as go
 from d2l import torch as d2l
+
 d2l.train_ch13
+
 
 def try_all_gpus():
     devices = [
@@ -53,7 +55,7 @@ def train_batch(net, x, y, loss, trainer, devices):
     pred = net(x)
     y = y.squeeze(1).long()
     l = loss(pred, y)
-    # l.sum().backward()
+    l.sum().backward()
     trainer.step()
     train_loss_sum = l.sum()
     train_acc_sum = accuracy(pred, y)
