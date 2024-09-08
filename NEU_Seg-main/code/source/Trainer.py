@@ -5,9 +5,6 @@ import torch.nn as nn
 
 import streamlit as st
 import plotly.graph_objs as go
-from d2l import torch as d2l
-
-d2l.train_ch13
 
 
 def try_all_gpus():

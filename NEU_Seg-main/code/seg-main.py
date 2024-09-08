@@ -1,8 +1,7 @@
 import os
 import torch
 import torchvision
-from d2l import torch as d2l
-import Trainer
+
 import torch
 import torch.utils
 import torch.utils.data
@@ -10,8 +9,10 @@ import torchvision
 import torch.nn as nn
 import torch.nn.functional as F
 
+# 此部分放置从source中导入的组件
 import data_reader as dr
 import InterpolateLayer
+import Trainer
 
 
 def loss(inputs, targets):
