@@ -61,7 +61,7 @@ def train_batch(net, x, y, loss, trainer, devices):
 
 def train(net, train_iter, test_iter, loss, trainer, num_epochs, devices=try_all_gpus()):
     num_batches = len(train_iter)
-    animator = Animator('Saikr', 'Train evaluate', [1, num_epochs], x_lable='epoch')
+    animator = Animator('Saikr', 'Train evaluate', [0, num_epochs], x_lable='epoch')
     net = nn.DataParallel(net, device_ids=devices).to(devices[0])
     for epoch in range(num_epochs):
         metric = Accumulator(4)

@@ -24,7 +24,7 @@ class PPM(nn.Module):
             poolde = pool(x)
             poolde = conv(poolde)
             poolde = bn(poolde)
-            print(poolde.size())
+            # print(poolde.size())
             poolde = F.interpolate(poolde, size=size[2:], mode='bilinear', align_corners=False)
             features.append(poolde)
 
@@ -32,8 +32,8 @@ class PPM(nn.Module):
         return out
 
 
-if __name__ == "__main__":
-    ppm = PPM(in_channel=64)
-    x = torch.randn(8, 64, 128, 128)
-    output = ppm(x)
-    print(output.shape)
+# if __name__ == "__main__":
+#     ppm = PPM(in_channel=64)
+#     x = torch.randn(8, 64, 128, 128)
+#     output = ppm(x)
+#     print(output.shape)

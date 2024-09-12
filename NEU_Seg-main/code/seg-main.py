@@ -13,6 +13,8 @@ import torch.nn.functional as F
 import data_reader as dr
 import InterpolateLayer
 import Trainer
+import ResNet18
+
 
 
 def loss(inputs, targets):
@@ -21,16 +23,17 @@ def loss(inputs, targets):
 
 def get_net(devices):
     num_classes = 4  # 4个类别，背景+3个灰度值
-    resnet18 = torchvision.models.resnet18(weights=None)
-    resnet18 = nn.Sequential(*list(resnet18.children())[:-2])
-    resnet18.add_module('final_conv', nn.Conv2d(512, num_classes, kernel_size=1))
-    resnet18.add_module('upsample', InterpolateLayer(size=(200, 200)))
+    resnet18 = ResNet18.resnet18(num_classes,in_channels=3)
+    # print(resnet18)
+    # resnet18 = nn.Sequential(*list(resnet18.children())[:-2])
+    # resnet18.add_module('final_conv', nn.Conv2d(512, num_classes, kernel_size=1))
+    # resnet18.add_module('upsample', InterpolateLayer.InterpolateLayer(size=(200, 200)))
 
     return resnet18
 
 
 def main():
-    train_iter, test_iter = dr.load_data(64)
+    train_iter, test_iter = dr.load_data(64,4)
     num_epochs, lr, wd, devices = 5, 0.001, 1e-3, Trainer.try_all_gpus()
 
     net = get_net(devices)
